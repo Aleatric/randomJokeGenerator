@@ -35,6 +35,11 @@ body {
   text-transform: uppercase;
 }
 
+#new-quote:hover {
+  background-color: #8b2e50;
+  cursor: pointer;
+}
+
 #tweet-quote {
   text-decoration: none;
   color: #fff;
