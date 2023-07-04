@@ -8,9 +8,9 @@ This project is a simple web application that generates random jokes. It utilise
 
 
 ## Technologies Used
-- HTML: Provides the structure and markup for the web page.
-- CSS: Styles the elements and ensures an appealing visual presentation.
-- JavaScript: Handles the interaction and fetching of jokes from the Joke API.
+- HTML
+- CSS
+- JavaScript
 
 
 ## Project Goals
