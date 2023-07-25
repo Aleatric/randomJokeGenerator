@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,53 @@
   <link rel="stylesheet" href="styles.css">
   <title>Random Joke Generator</title>
 </head>
+
 <body>
   <div id="quote-box">
     <p id="text">Joke Generator</p>
-    <p id="author">created by <br> bradley cronan</p>
-    <button id="new-quote">make a joke &#128512;</button>
+    <p id="author">created by <br> Bradley Cronan</p>
+    <div id="catagory-filters">
+      <label>
+        <input type="checkbox" name="category" value="Programming">
+        <span>Programming</span>
+      </label>
+      <label>
+        <input type="checkbox" name="category" value="Miscellaneous">
+        <span>Misc</span>
+      </label>
+      <label>
+        <input type="checkbox" name="category" value="Dark">
+        <span>Dark</span>
+      </label>
+      <label>
+        <input type="checkbox" name="category" value="Pun">
+        <span>Pun</span>
+      </label>
+      <label>
+        <input type="checkbox" name="category" value="Spooky">
+        <span>Spooky</span>
+      </label>
+      <label>
+        <input type="checkbox" name="category" value="Christmas">
+        <span>Christmas</span>
+      </label>
+    </div>
+
+    <div class="content-filter-container">
+      <label class="content-filter">
+        <input type="checkbox" id="content-filter">
+        <span>Content Filter</span>
+      </label>
+
+      <label class="bad-content-filter">
+        <input type="checkbox" id="bad-content-filter">
+        <span>Bad Content Filter</span>
+      </label>
+    </div>    
+
+    <button id="new-quote"><span class="emoji">&#128512;</span>make a joke <span class="emoji">&#128512;</span></button>
     <a id="tweet-quote" href="https://twitter.com/intent/tweet" target="_blank">Tweet</a>
   </div>
 </body>
+
 </html>
