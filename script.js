@@ -6,30 +6,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const fetchRandomJoke = async () => {
     try {
-      const response = await fetch('https://v2.jokeapi.dev/joke/Any');
+      const selectedCategories = Array.from(document.querySelectorAll('input[name="category"]:checked'))
+        .map(checkbox => checkbox.value)
+        .join(',');
+
+      const contentFilter = document.getElementById('content-filter').checked
+        ? 'nsfw,religious,political,racist,sexist,explicit'
+        : '';
+
+        const addRandomAsterisks = (text) => {
+          const words = text.split(/\s+/);
+          const numAsterisks = Math.floor(Math.random() * words.length) + 1;
+          const indexes = [];
+        
+          for (let i = 0; i < numAsterisks; i++) {
+            indexes.push(Math.floor(Math.random() * words.length));
+          }
+        
+          indexes.sort((a, b) => b - a);
+        
+          for (const index of indexes) {
+            const wordWithAsterisks = '*'.repeat(Math.floor(Math.random() * 3) + 1);
+            words.splice(index, 1, wordWithAsterisks);
+          }
+        
+          return words.join(' ');
+        };
+
+      let apiUrl = 'https://v2.jokeapi.dev/joke/Any';
+
+      if (selectedCategories) {
+        apiUrl = `https://v2.jokeapi.dev/joke/${selectedCategories}?blacklistFlags=${contentFilter}`;
+      }
+
+      const response = await fetch(apiUrl);
       const data = await response.json();
 
       if (response.status !== 200 || data.error) {
         throw new Error('Failed to fetch joke');
       }
 
-      if (data.type === 'single') {
-        jokeTextElement.textContent = data.joke;
-        jokeAuthorElement.textContent = '';
-      } else {
-        jokeTextElement.textContent = data.setup;
-        jokeAuthorElement.textContent = data.delivery;
+      let jokeText = data.type === 'single' ? data.joke : `${data.setup} ${data.delivery}`;
+
+      const badContentFilterEnabled = document.getElementById('bad-content-filter').checked;
+      if (badContentFilterEnabled) {
+        jokeText = addRandomAsterisks(jokeText);
       }
 
-      const tweetText = encodeURIComponent(data.type === 'single' ? data.joke : `${data.setup} ${data.delivery}`);
+      jokeTextElement.textContent = jokeText;
+      jokeAuthorElement.textContent = '';
+
+      const tweetText = encodeURIComponent(jokeText);
       tweetButton.href = `https://twitter.com/intent/tweet?text=${tweetText}`;
     } catch (error) {
       console.error('Error fetching joke:', error);
+      jokeTextElement.textContent = 'Failed to fetch joke';
+      jokeAuthorElement.textContent = '';
     }
   };
 
   newJokeButton.addEventListener('click', fetchRandomJoke);
 
-  // Fetch initial joke on page load
   fetchRandomJoke();
 });
