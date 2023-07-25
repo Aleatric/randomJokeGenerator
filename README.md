@@ -5,6 +5,9 @@ This project is a simple web application that generates random jokes. It utilise
 ## Features
 - Random Joke Generation: Clicking the "Make a Joke" button fetches a random joke from the Joke API and displays it on the screen.
 - Responsive Design: The web page is designed to be responsive and adapt to different screen resolutions across various devices.
+- Joke Themes: 6 themes to choose from.
+- Content Filter: Worried about inappropriate content? Worry no more! The content filter ensures that the jokes displayed are family-friendly and suitable for all audiences.
+- Bad Content Filter: This one does filter something...
 
 
 ## Technologies Used
@@ -19,8 +22,3 @@ The main focus of this project was to showcase the functionality of generating r
 
 ## How to Use
 Click the "Make a Joke" button to fetch and display a random joke.
-
-
-## Future Improvements
-- Implement joke filtering options based on catagories or user preferences.
-- Enhance the user interface with more interactive elements and animations.
